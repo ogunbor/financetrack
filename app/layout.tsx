@@ -1,4 +1,12 @@
 import type { Metadata } from "next";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
@@ -23,20 +31,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${poppins.variable} antialiased`}
-      >
-        <nav className="bg-primary p-4 text-white h-20 flex items-center justify-between">
-          <Link
-            href="/"
-            className="font-bold text-2xl flex gap-1 items-center"
-          >
-            <ChartColumnBigIcon className="text-lime-500" /> FinanceTrack
-          </Link>
-        </nav>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${poppins.variable} antialiased`}
+        >
+          <nav className="bg-primary p-4 text-white h-20 flex items-center justify-between">
+            <Link
+              href="/"
+              className="font-bold text-2xl flex gap-1 items-center"
+            >
+              <ChartColumnBigIcon className="text-lime-500" /> FinanceTrack
+            </Link>
+            <div>
+              <SignedOut>
+                <div className="flex items-center">
+                  <SignInButton />
+                  <SignUpButton />
+                </div>
+              </SignedOut>
+            </div>
+          </nav>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
