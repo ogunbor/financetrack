@@ -8,9 +8,12 @@ import {
   UserButton,
 } from '@clerk/nextjs'
 import { Poppins } from "next/font/google";
+
 import "./globals.css";
 import Link from "next/link";
 import { ChartColumnBigIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import UserDropdown from "./user-dropdown";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -46,10 +49,17 @@ export default function RootLayout({
             <div>
               <SignedOut>
                 <div className="flex items-center">
-                  <SignInButton />
-                  <SignUpButton />
+                  <Button asChild variant="link" className="text-white">
+                    <SignInButton />
+                  </Button>
+                  <Button asChild variant="link" className="text-white">
+                    <SignUpButton />
+                  </Button>
                 </div>
               </SignedOut>
+              <SignedIn>
+                <UserDropdown />
+              </SignedIn>
             </div>
           </nav>
           {children}
