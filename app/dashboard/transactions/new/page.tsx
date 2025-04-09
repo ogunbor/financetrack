@@ -8,10 +8,12 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getCategories } from "@/data/getCategories";
 import Link from "next/link";
 
 export default async function NewTransactionPage() {
-
+    const categories = await getCategories();
+    console.log({ categories });
     return (
         <div className="max-w-screen-xl mx-auto py-10">
 
@@ -39,7 +41,7 @@ export default async function NewTransactionPage() {
                     <CardTitle>New Transaction</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <TransactionForm />
+                    <TransactionForm categories={categories} />
                 </CardContent>
             </Card>
         </div>

@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
 import { Input } from "./ui/input";
+import { type Category } from "@/types/Category";
 
 export const transactionFormSchema = z.object({
     transactionType: z.enum(["income", "expense"]),
@@ -26,7 +27,11 @@ export const transactionFormSchema = z.object({
         .max(300, "Description must contain a maximum of 300 characters"),
 });
 
-export default function TransactionForm() {
+export default function TransactionForm({
+    categories,
+}: {
+    categories: Category[];
+}) {
 
     const form = useForm<z.infer<typeof transactionFormSchema>>({
         resolver: zodResolver(transactionFormSchema),
@@ -43,6 +48,10 @@ export default function TransactionForm() {
     ) => {
 
     }
+    const transactionType = form.watch("transactionType");
+    const filteredCategories = categories.filter(
+        (category) => category.type === transactionType
+    );
 
     return (
         <Form {...form}>
@@ -56,7 +65,13 @@ export default function TransactionForm() {
                                 <FormItem>
                                     <FormLabel>Transaction Type</FormLabel>
                                     <FormControl>
-                                        <Select onValueChange={field.onChange} value={field.value}>
+                                        <Select
+                                            onValueChange={(newValue) => {
+                                                field.onChange(newValue);
+                                                form.setValue("categoryId", 0);
+                                            }}
+                                            value={field.value}
+                                        >
                                             <SelectTrigger className="w-full">
                                                 <SelectValue />
                                             </SelectTrigger>
@@ -84,7 +99,14 @@ export default function TransactionForm() {
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent>
-
+                                                {filteredCategories.map((category) => (
+                                                    <SelectItem
+                                                        key={category.id}
+                                                        value={category.id.toString()}
+                                                    >
+                                                        {category.name}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
