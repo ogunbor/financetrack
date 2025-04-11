@@ -27,11 +27,22 @@ export const transactionFormSchema = z.object({
         .max(300, "Description must contain a maximum of 300 characters"),
 });
 
+type Props = {
+    categories: Category[];
+    onSubmit: (data: z.infer<typeof transactionFormSchema>) => Promise<void>;
+    defaultValues?: {
+        transactionType: "income" | "expense";
+        amount: number;
+        categoryId: number;
+        description: string;
+        transactionDate: Date;
+    };
+};
+
 export default function TransactionForm({
     categories,
-}: {
-    categories: Category[];
-}) {
+    onSubmit,
+}: Props) {
 
     const form = useForm<z.infer<typeof transactionFormSchema>>({
         resolver: zodResolver(transactionFormSchema),
@@ -43,11 +54,6 @@ export default function TransactionForm({
             transactionType: "income",
         },
     });
-    const handleSubmit = async (
-        data: z.infer<typeof transactionFormSchema>
-    ) => {
-
-    }
     const transactionType = form.watch("transactionType");
     const filteredCategories = categories.filter(
         (category) => category.type === transactionType
@@ -55,8 +61,8 @@ export default function TransactionForm({
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)}>
-                <fieldset className="grid grid-cols-2 gap-y-5 gap-x-2 items-start">
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <fieldset disabled={form.formState.isSubmitting} className="grid grid-cols-2 gap-y-5 gap-x-2 items-start">
                     <FormField
                         control={form.control}
                         name="transactionType"
@@ -175,7 +181,7 @@ export default function TransactionForm({
                         }}
                     />
                 </fieldset>
-                <fieldset className="mt-5 flex flex-col gap-5">
+                <fieldset disabled={form.formState.isSubmitting} className="mt-5 flex flex-col gap-5">
                     <FormField
                         control={form.control}
                         name="description"

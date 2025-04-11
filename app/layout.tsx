@@ -8,6 +8,7 @@ import {
   UserButton,
 } from '@clerk/nextjs'
 import { Poppins } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css";
 import Link from "next/link";
@@ -63,6 +64,7 @@ export default function RootLayout({
             </div>
           </nav>
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
