@@ -16,6 +16,8 @@ import Link from "next/link";
 import { z } from "zod";
 import numeral from "numeral";
 import { Badge } from "@/components/ui/badge";
+import Filters from "./filters";
+import { getTransactionYearsRange } from "@/data/getTransactionYearsRange";
 
 const today = new Date();
 
@@ -45,6 +47,8 @@ export default async function TransactionsPage({
 
     const transactions = await getTransactionsByMonth({ month, year });
 
+    const yearsRange = await getTransactionYearsRange();
+
     console.log({ transactions });
 
 
@@ -68,7 +72,7 @@ export default async function TransactionsPage({
                     <CardTitle className="flex justify-between">
                         <span>{format(selectedDate, "MMM yyyy")} Transactions</span>
                         <div>
-                            dropdowns
+                            <Filters year={year} month={month} yearsRange={yearsRange} />
                         </div>
                     </CardTitle>
                 </CardHeader>
