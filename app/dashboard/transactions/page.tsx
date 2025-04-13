@@ -15,6 +15,7 @@ import { PencilIcon } from "lucide-react";
 import Link from "next/link";
 import { z } from "zod";
 import numeral from "numeral";
+import { Badge } from "@/components/ui/badge";
 
 const today = new Date();
 
@@ -100,10 +101,18 @@ export default async function TransactionsPage({
                                                 {format(transaction.transactionDate, "do MMM yyyy")}
                                             </TableCell>
                                             <TableCell>{transaction.description}</TableCell>
-                                            <TableCell>
-                                                {transaction.categoryId}
+                                            <TableCell className="capitalize">
+                                                <Badge
+                                                    className={
+                                                        transaction.transactionType === "income"
+                                                            ? "bg-lime-500"
+                                                            : "bg-orange-500"
+                                                    }
+                                                >
+                                                    {transaction.transactionType}
+                                                </Badge>
                                             </TableCell>
-                                            <TableCell>{transaction.categoryId}</TableCell>
+                                            <TableCell>{transaction.category}</TableCell>
                                             <TableCell>
                                                 ₦{numeral(transaction.amount).format("0,0[.]00")}
                                             </TableCell>
