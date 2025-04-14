@@ -42,6 +42,7 @@ type Props = {
 export default function TransactionForm({
     categories,
     onSubmit,
+    defaultValues,
 }: Props) {
 
     const form = useForm<z.infer<typeof transactionFormSchema>>({
@@ -52,6 +53,7 @@ export default function TransactionForm({
             description: "",
             transactionDate: new Date(),
             transactionType: "income",
+            ...defaultValues,
         },
     });
     const transactionType = form.watch("transactionType");
