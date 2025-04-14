@@ -8,6 +8,7 @@ import { type Category } from "@/types/Category";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { format } from "date-fns";
+import { updateTransaction } from "./actions";
 
 export default function EditTransactionForm({
     categories,
@@ -26,9 +27,15 @@ export default function EditTransactionForm({
 
 
     const handleSubmit = async (data: z.infer<typeof transactionFormSchema>) => {
-        const result: any = {};
+        const result = await updateTransaction({
+            id: transaction.id,
+            amount: data.amount,
+            description: data.description,
+            categoryId: data.categoryId,
+            transactionDate: format(data.transactionDate, "yyyy-MM-dd"),
+        });
 
-        if (result.error) {
+        if (result?.error) {
             toast("Error", {
                 description: result.message,
             });
