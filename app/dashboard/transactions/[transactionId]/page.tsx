@@ -26,44 +26,23 @@ export default async function EditTransactionPage({
         notFound();
     }
     return (
-        <div className="max-w-screen-xl mx-auto py-10">
-
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/dashboard">Dashboard</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/dashboard/transactions">Transactions</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>New Transaction</BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
-            <Card className="mt-4 max-w-screen-md">
-                <CardHeader>
-                    <CardTitle className="flex justify-between">
-                        <span>Edit Transaction</span>
-                        <DeleteTransactionDialog
-                            transactionId={transaction.id}
-                            transactionDate={transaction.transactionDate}
-                        />
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <EditTransactionForm
-                        transaction={transaction}
-                        categories={categories}
+        <Card className="mt-4 max-w-screen-md">
+            <CardHeader>
+                <CardTitle className="flex justify-between">
+                    <span>Edit Transaction</span>
+                    <DeleteTransactionDialog
+                        transactionId={transaction.id}
+                        transactionDate={transaction.transactionDate}
                     />
-                </CardContent>
-            </Card>
-        </div>
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <EditTransactionForm
+                    transaction={transaction}
+                    categories={categories}
+                />
+            </CardContent>
+        </Card>
+
     );
 }
