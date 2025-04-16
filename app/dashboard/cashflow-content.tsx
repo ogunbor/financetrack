@@ -52,7 +52,7 @@ export function CashflowContent({
                     <CartesianGrid vertical={false} />
                     <YAxis
                         tickFormatter={(value) => {
-                            return `£${numeral(value).format("0,0")}`;
+                            return `₦${numeral(value).format("0,0")}`;
                         }}
                     />
                     <XAxis
@@ -97,7 +97,7 @@ export function CashflowContent({
                         Income
                     </span>
                     <h2 className="text-3xl">
-                        £{numeral(totalAnnualIncome).format("0,0[.]00")}
+                        ₦{numeral(totalAnnualIncome).format("0,0[.]00")}
                     </h2>
                 </div>
                 <div className="border-t" />
@@ -106,7 +106,7 @@ export function CashflowContent({
                         Expenses
                     </span>
                     <h2 className="text-3xl">
-                        £{numeral(totalAnnualExpenses).format("0,0[.]00")}
+                        ₦{numeral(totalAnnualExpenses).format("0,0[.]00")}
                     </h2>
                 </div>
                 <div className="border-t" />
@@ -120,7 +120,7 @@ export function CashflowContent({
                             balance >= 0 ? "text-lime-500" : "text-orange-500"
                         )}
                     >
-                        £{numeral(balance).format("0,0[.]00")}
+                        ₦{numeral(balance).format("0,0[.]00")}
                     </h2>
                 </div>
             </div>

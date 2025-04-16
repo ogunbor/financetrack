@@ -69,7 +69,7 @@ export default async function RecentTransactions() {
                                     </TableCell>
                                     <TableCell>{transaction.category}</TableCell>
                                     <TableCell>
-                                        £{numeral(transaction.amount).format("0,0[.]00")}
+                                        ₦{numeral(transaction.amount).format("0,0[.]00")}
                                     </TableCell>
                                 </TableRow>
                             ))}

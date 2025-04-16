@@ -1,7 +1,6 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getCategories } from "@/data/getCategories";
-import Link from "next/link";
 
 import { notFound } from "next/navigation";
 import EditTransactionForm from "./edit-transaction-form";
