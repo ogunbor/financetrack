@@ -5,7 +5,6 @@ import {
   SignUpButton,
   SignedIn,
   SignedOut,
-  UserButton,
 } from '@clerk/nextjs'
 import { Poppins } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner"
