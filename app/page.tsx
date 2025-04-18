@@ -34,7 +34,7 @@ export default function Home() {
           </div>
         </SignedOut>
         <div className="absolute top-78 left-0 right-0 text-center text-sm text-gray-800 z-10">
-          © Jerry Charja 2015
+          © Jerry Charja 2025
         </div>
       </div>
     </main>
