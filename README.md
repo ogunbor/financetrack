@@ -32,13 +32,13 @@ Utilities	clsx, date-fns, numeral, dotenv
 🚀 Getting Started
 1. Clone the repo
 bash
-Copy
+
 Edit
 git clone https://github.com/your-username/financetrack.git
 cd financetrack
 2. Install dependencies
 bash
-Copy
+
 Edit
 npm install
 # or
@@ -47,7 +47,7 @@ yarn install
 Create a .env file and add the following (example format):
 
 env
-Copy
+
 Edit
 DATABASE_URL=your_neon_database_url
 CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
@@ -57,7 +57,7 @@ Make sure you have a Neon DB and Clerk project set up.
 
 4. Run the development server
 bash
-Copy
+
 Edit
 npm run dev
 Open http://localhost:3000 to see it in action.
