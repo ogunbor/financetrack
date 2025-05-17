@@ -14,10 +14,6 @@ FinanceTrack is a modern personal finance tracker built with Next.js 15, Tailwin
 
 📦 Flexible form handling with react-hook-form & Zod validation
 
-🧠 Clean, accessible UI with Radix UI
-
-⚙️ Smooth animations using tw-animate-css
-
 🧱 Tech Stack
 
 Category	Tools & Libraries
